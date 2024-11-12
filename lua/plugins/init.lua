@@ -20,6 +20,7 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
 
+  require 'plugins/project',
   require 'plugins/nvim-tree',
   require 'plugins/gitsign',
   require 'plugins/which-key',

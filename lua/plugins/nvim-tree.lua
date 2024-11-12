@@ -3,8 +3,8 @@ local function on_attach(bufnr)
 
   api.config.mappings.default_on_attach(bufnr)
 
-  vim.keymap.set('n', 'l', api.node.open.edit, { desc = 'open' })
-  vim.keymap.set('n', 'h', api.node.navigate.parent_close, { desc = 'open' })
+  vim.keymap.set('n', 'l', api.node.open.edit, { desc = 'open', buffer = bufnr })
+  vim.keymap.set('n', 'h', api.node.navigate.parent_close, { desc = 'open', buffer = bufnr })
 end
 
 return {

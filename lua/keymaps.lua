@@ -34,3 +34,5 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { desc = '[W]rite file' })
 vim.keymap.set('n', '<leader>/', 'gcc', { desc = 'Toggle Comment Line', remap = true })
 vim.keymap.set('v', '<leader>/', 'gc', { desc = 'Toggle Comment line', remap = true })
+
+vim.keymap.set('n', 'gl', '<c-w>d', { desc = 'Show diagnostic under cursor', remap = true })
