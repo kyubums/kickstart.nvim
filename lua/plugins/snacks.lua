@@ -33,5 +33,19 @@ return {
       end,
       desc = '[T]oggle [T]erminal',
     },
+    {
+      '<leader>bd',
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = '[B]uffer [D]elete',
+    },
+    {
+      '<leader>bD',
+      function()
+        Snacks.bufdelete.other(opts)
+      end,
+      desc = '[B]uffer [D]elete Others',
+    },
   },
 }
