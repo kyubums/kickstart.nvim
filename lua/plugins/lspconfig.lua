@@ -205,7 +205,7 @@ return {
         },
 
         sqls = {
-          cmd = { 'sqls', '-config', './sqls.yml' },
+          cmd = { 'sqls', '-config', './sqls.yaml' },
           root_dir = get_git_root(),
         },
       }
