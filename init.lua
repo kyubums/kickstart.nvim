@@ -7,6 +7,16 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+function is_git_repo()
+  vim.fn.system 'git rev-parse --is-inside-work-tree'
+  return vim.v.shell_error == 0
+end
+
+function get_git_root()
+  local dot_git_path = vim.fn.finddir('.git', '.;')
+  return vim.fn.fnamemodify(dot_git_path, ':h')
+end
+
 require 'options'
 require 'keymaps'
 require 'autocommands'

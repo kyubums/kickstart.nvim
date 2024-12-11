@@ -9,6 +9,14 @@ end
 
 return {
   'nvim-tree/nvim-tree.lua',
+  view = {
+    preserve_window_proportions = true,
+  },
+  actions = {
+    open_file = {
+      resize_window = false,
+    },
+  },
   keys = function()
     local api = require 'nvim-tree.api'
 
