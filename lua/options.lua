@@ -6,7 +6,6 @@
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.bo.softtabstop = 2
 
 -- Make line numbers default
 vim.opt.number = true
