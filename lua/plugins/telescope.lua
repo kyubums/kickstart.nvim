@@ -4,38 +4,11 @@
 -- you do for a plugin at the top level, you can do for a dependency.
 --
 -- Use the `dependencies` key to specify the dependencies of a particular plugin
-local function live_grep_from_project_git_root()
-  local opts = {}
-
-  if is_git_repo() then
-    opts = {
-      cwd = get_git_root(),
-    }
-  end
-
-  require('telescope.builtin').live_grep(opts)
-end
-
-local function find_files_from_project_git_root()
-  local opts = {}
-  if is_git_repo() then
-    opts = {
-      cwd = get_git_root(),
-      hidden = true,
-    }
-  end
-
-  require('telescope.builtin').find_files(opts)
-end
-
-local function find_buffers_sorted()
-  require('telescope.builtin').buffers { sort_lastused = true }
-end
 
 return { -- Fuzzy Finder (files, lsp, etc)
   'nvim-telescope/telescope.nvim',
   event = 'VimEnter',
-  branch = '0.1.x',
+  branch = 'master',
   dependencies = {
     'nvim-lua/plenary.nvim',
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -54,7 +27,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     { 'nvim-telescope/telescope-ui-select.nvim' },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
-    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -82,12 +55,24 @@ return { -- Fuzzy Finder (files, lsp, etc)
       -- You can put your default mappings / updates / etc. in here
       --  All the info you're looking for is in `:help telescope.setup()`
       --
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
-      -- pickers = {}
+      defaults = {
+        mappings = {
+          i = {
+            ['<C-enter>'] = 'to_fuzzy_refine',
+          },
+        },
+        path_display = { "filename_first" },
+      },
+      pickers = {
+        lsp_dynamic_workspace_symbols = {
+          path_display = { "smart" },
+        },
+        buffers = {
+          sort_mru = true,
+          ignore_current_buffer = true,
+          show_all_buffers = false,
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
@@ -104,13 +89,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
     local builtin = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-    vim.keymap.set('n', '<leader>f', find_files_from_project_git_root, { desc = 'Search [F]iles' })
+    vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Search [F]iles' })
     vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
     vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>st', live_grep_from_project_git_root, { desc = '[S]earch [T]ext' })
+    vim.keymap.set('n', '<leader>st', builtin.live_grep, { desc = '[S]earch [T]ext' })
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', builtin.oldfiles, { desc = '[S]earch [R]ecent Files' })
-    vim.keymap.set('n', '<leader><leader>', find_buffers_sorted, { desc = '[ ] Find existing buffers' })
+    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
     -- Slightly advanced example of overriding default behavior and theme
     vim.keymap.set('n', '<leader>sb', function()

@@ -24,7 +24,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
@@ -104,6 +104,13 @@ return {
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>la', vim.lsp.buf.code_action, '[L]sp [A]ction', { 'n', 'x' })
+
+          map('<leader>lo', function()
+            vim.lsp.buf.code_action {
+              apply = true,
+              context = { only = { 'source.organizeImports' }, diagnostics = {} },
+            }
+          end, '[L]sp [O]rganize Imports')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -202,11 +209,6 @@ return {
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
-        },
-
-        sqls = {
-          cmd = { 'sqls', '-config', './sqls.yaml' },
-          root_dir = get_git_root(),
         },
       }
 

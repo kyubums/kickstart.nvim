@@ -32,8 +32,12 @@ require('lazy').setup({
   require 'plugins/todo-comments',
   require 'plugins/mini',
   require 'plugins/treesitter',
+  require 'plugins/treesitter-context',
   require 'plugins/snacks',
   require 'plugins/autopair',
+  -- require 'plugins/typescript-tools',
+  require 'plugins/copilot',
+  require 'plugins/gitblame',
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and

@@ -27,11 +27,12 @@ return {
       desc = 'Lazygit',
     },
     {
-      '<leader>tt',
+      '<C-\\><C-\\>',
       function()
         Snacks.terminal()
       end,
-      desc = '[T]oggle [T]erminal',
+      desc = 'Toggle Terminal',
+      mode = { 'n', 't' },
     },
     {
       '<leader>bd',
