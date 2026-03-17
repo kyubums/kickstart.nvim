@@ -9,14 +9,6 @@ end
 
 return {
   'nvim-tree/nvim-tree.lua',
-  view = {
-    preserve_window_proportions = true,
-  },
-  actions = {
-    open_file = {
-      resize_window = false,
-    },
-  },
   keys = function()
     local api = require 'nvim-tree.api'
 
@@ -24,17 +16,29 @@ return {
       {
         '<leader>e',
         function()
-          api.tree.toggle {
-            find_file = true,
-            update_root = { enable = true },
-          }
+          api.tree.toggle {}
         end,
         mode = 'n',
         desc = 'NvimTreeFocus',
       },
     }
   end,
+  ---@type nvim_tree.config
   opts = {
+    update_focused_file = {
+      enable = true,
+    },
+    view = {
+      preserve_window_proportions = true,
+      width = {
+        max = 100,
+      }
+    },
+    actions = {
+      open_file = {
+        resize_window = false,
+      },
+    },
     on_attach = on_attach,
   },
 }

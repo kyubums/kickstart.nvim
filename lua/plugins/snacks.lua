@@ -35,6 +35,18 @@ return {
       mode = { 'n', 't' },
     },
     {
+      '<leader>ai',
+      function()
+        Snacks.terminal('claude', {
+          win = {
+            position = 'right',
+          },
+          interactive = true,
+        })
+      end,
+      desc = 'Claude [A][I] Terminal',
+    },
+    {
       '<leader>bd',
       function()
         Snacks.bufdelete()
