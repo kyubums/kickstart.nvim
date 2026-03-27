@@ -64,6 +64,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
         path_display = { "filename_first" },
       },
       pickers = {
+        lsp_document_symbols = {
+          symbol_width = 50,
+        },
         lsp_dynamic_workspace_symbols = {
           path_display = { "smart" },
         },

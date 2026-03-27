@@ -16,7 +16,15 @@ return {
       {
         '<leader>e',
         function()
-          api.tree.toggle {}
+          api.tree.toggle()
+        end,
+        mode = 'n',
+        desc = 'NvimTreeFocus',
+      },
+      {
+        '<leader>E',
+        function()
+          api.tree.focus()
         end,
         mode = 'n',
         desc = 'NvimTreeFocus',
